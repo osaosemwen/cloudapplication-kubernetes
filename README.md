@@ -26,3 +26,20 @@ deployment "nginx" created
 
 The --record makes it possible to track and monitor changes on the pods. you can use create or apply to deploy the yaml file.
 
+$ kubectl get deployments 
+
+This shows the name & state, and other information of the deployment "nginx"
+
+Check the desciption (full detail- this will be a useful line for troubleshooting and viewing details)of the deployment:
+
+$ kubectl describe deployments
+
+
+to see the deployment rollout use (although this is also one of the lines from the describe deployments) :
+
+$ kubectl rollout status deployment/nginx
+
+It should be noted that the deployments manages the replica sets and the replicasets (rs) manages the pods, hence:
+
+$ kubectl get rs
+gives
