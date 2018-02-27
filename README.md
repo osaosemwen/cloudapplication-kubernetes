@@ -39,7 +39,16 @@ to see the deployment rollout use (although this is also one of the lines from t
 
 $ kubectl rollout status deployment/nginx
 
-It should be noted that the deployments manages the replica sets and the replicasets (rs) manages the pods, hence:
+It should be noted that the deployments manages the ReplicaSets and the ReplicaSets (rs) manages the pods, hence:
 
 $ kubectl get rs
-gives
+
+gives a short summary of the ReplicaSet deployed.
+
+to isolate your pods created using labels used in creating the deployment for example "http-server"
+
+$ kubectl get pod -l "service in (http-server)"
+
+UPDATING YOUR ROLLOUT/DEPLOYMENT
+
+This is where the fun begins:
