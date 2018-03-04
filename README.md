@@ -35,6 +35,7 @@ Check the desciption (full detail- this will be a useful line for troubleshootin
 $ kubectl describe deployments
 
 
+
 to see the deployment rollout use (although this is also one of the lines from the describe deployments) :
 
 $ kubectl rollout status deployment/nginx
@@ -52,3 +53,19 @@ $ kubectl get pod -l "service in (http-server)"
 UPDATING YOUR ROLLOUT/DEPLOYMENT
 
 This is where the fun begins:
+
+we can update the deployment from first the YAML file:
+
+
+First we update the number of replicas from the yaml from 3 file to 5. Next we edit the spec:
+
+maxSurge:
+
+This is the number of pods that can be created with auto-configuration of pods to deal with the surge of request on the application. This can be a whole number or a percentage. e.g. if the replicas where 5 and a maxSurge was 2. this means the total number of pods tha can be deployed at any given situation is 5. 
+
+minReadySeconds:
+Since kubernetes engine assume your application is available once the pods are deployed by default, the service maynot be available until all pods are deployed if you configure your setup leaving this field empty. hence the minReadySeconds will be the bootup time for your application service to be available, use your discretion. 
+
+maxUnavailable:
+this is the amount of pods that can be deleted when the demand on the application reduces. this field cannot be zero, so the maxUnavailable is set to 1.
+
