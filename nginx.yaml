@@ -10,10 +10,10 @@ spec:
     matchLabels:
       app: nginx
   strategy:
-    type:RollingUpdate
+    type: RollingUpdate
     rollingUpdate: 
       maxSurge: 2
-      maxUnavailable:2
+      maxUnavailable: 2
   minReadySeconds: 15   
   template:
     metadata:
