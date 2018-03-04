@@ -140,7 +140,7 @@ REVISION  CHANGE-CAUSE
 
 you can also use describe deployment as used above to see each of the steps taking so far:
 
-# ROLLING Back
+# Rolling Back
 
 if a rollout gets stuck, you can troubleshoot by first seeing details in history of a revision using the following
 
@@ -157,11 +157,14 @@ this scales the deployment. one can even deploy auto scaling as you would in EC2
 
 $ kubectl autoscale deployment nginx-deployment --min=3 --max=15
 
-This sets the current deployment of pods to be a minimum of 3 and a maximum of 15.
+This sets the current deployment of pods to auto sclae to a minimum of 3 and a maximum of 15.
 
 
-Whats next clean up!!!!!!
+# Whats next clean up!!!!!!
 
+It is very important to clean up your deployemnt!! 
+
+# What next
 can we do more with kubernetes, like providing a Software as a service using clusters from a monolith??
 can we  make our roll out and edition using pipelines?
 please read the next article.
