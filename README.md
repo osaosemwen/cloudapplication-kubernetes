@@ -69,3 +69,11 @@ Since kubernetes engine assume your application is available once the pods are d
 maxUnavailable:
 this is the amount of pods that can be deleted when the demand on the application reduces. this field cannot be zero, so the maxUnavailable is set to 1.
 
+save the file as new-nginx.yaml
+roll this update using "replace"
+
+
+$ kubectl replace -f new-nginx.yaml --record
+
+in this repo its version2.
+
