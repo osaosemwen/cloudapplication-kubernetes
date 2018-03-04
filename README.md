@@ -1,4 +1,4 @@
-# cloudapplication-kubernetes
+$ kubectl replace -f new-nginx.yaml --record# cloudapplication-kubernetes
 Before showing rolling out, updating application creating replicas etc on clusters, It is pertinent to read the introduction in the previous page README cloudapplication.
 Next, a Cluster is a set or a group of instances, or compute engines connected to function as one unit. 
 A pod, could be any type of container, it could be a container that embedds secrets or functions which can be hidden or seen in the instance, it could also be what holds a 
@@ -76,4 +76,67 @@ roll this update using "replace"
 $ kubectl replace -f new-nginx.yaml --record
 
 in this repo its version2.
+
+
+The second way to roll out update is using "set image":
+This current image is 1.10.2 from the yaml file. we can change this image using the set image as in this format:
+
+# format
+
+$ kubectl set image deployment <deployment> <container>=<image> --record
+  
+  
+# example
+
+$ kubectl set image deployment nginx nginx=nginx:1.12.3 --record
+
+this gives: deployment "nginx" image updated
+
+
+Lastly, we can edit a deployment. we make the changes on the yaml file and edit the deployment simply using edit in our case this is version3 shown below: This will take u to a vim edit page: 
+
+
+$ kubectl edit deployment nginx --record
+
+once exiting the vim editor the update will be noted.
+ 
+
+this gives us version 3 or our deployemnt.
+ 
+ for us to see all deployments:
+ 
+ $ kubectl rollout status deployment nginx 
+ 
+this takes time.
+
+
+you can "pause" deployment rollout, "resume" deployment rollout
+ 
+but to see the current satatus:
+
+use $ kubectl rollout status deployment/nginx
+
+to see a history of all the rollout: use 
+
+$ kubectl rollout history deployment/nginx
+ 
+ this gives:
+ 
+deployments "nginx"
+
+REVISION  CHANGE-CAUSE
+
+1         kubectl replace --filename=new-nginx.yaml --record=true
+
+2         kubectl set image deployment nginx nginx=nginx:1.12.3 --record=true
+
+3         kubectl edit deployment nginx --record=true
+
+
+
+
+
+reference: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+
+
 
