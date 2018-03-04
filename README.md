@@ -160,7 +160,11 @@ $ kubectl autoscale deployment nginx-deployment --min=3 --max=15
 This sets the current deployment of pods to be a minimum of 3 and a maximum of 15.
 
 
+Whats next clean up!!!!!!
 
+can we do more with kubernetes, like providing a Software as a service using clusters from a monolith??
+can we  make our roll out and edition using pipelines?
+please read the next article.
 
 
 
