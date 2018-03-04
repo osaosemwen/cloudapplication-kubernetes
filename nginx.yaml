@@ -8,7 +8,7 @@ metadata:
   labels:
     app: nginx
 spec:
-  replicas: 4
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
@@ -16,8 +16,8 @@ spec:
     type: RollingUpdate
     rollingUpdate: 
       maxSurge: 2
-      maxUnavailable: 2
-  minReadySeconds: 15   
+      maxUnavailable: 1
+  minReadySeconds: 5   
   template:
     metadata:
       labels:
