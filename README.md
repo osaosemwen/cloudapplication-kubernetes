@@ -1,3 +1,5 @@
+# Kubernetes Application Deployments and Rollout and scalling
+
 $ kubectl replace -f new-nginx.yaml --record# cloudapplication-kubernetes
 Before showing rolling out, updating application creating replicas etc on clusters, It is pertinent to read the introduction in the previous page README cloudapplication.
 Next, a Cluster is a set or a group of instances, or compute engines connected to function as one unit. 
@@ -57,7 +59,8 @@ This is where the fun begins:
 we can update the deployment from first the YAML file:
 
 
-First we update the number of replicas from the yaml from 3 file to 5. Next we edit the spec:
+# First 
+we update the number of replicas from the yaml from 3 file to 5. Next we edit the spec:
 
 maxSurge:
 
@@ -78,7 +81,8 @@ $ kubectl replace -f new-nginx.yaml --record
 in this repo its version2.
 
 
-The second way to roll out update is using "set image":
+# The second way 
+To roll out update we use "set image":
 This current image is 1.10.2 from the yaml file. we can change this image using the set image as in this format:
 
 # format
@@ -93,7 +97,8 @@ $ kubectl set image deployment nginx nginx=nginx:1.12.3 --record
 this gives: deployment "nginx" image updated
 
 
-Lastly, we can edit a deployment. we make the changes on the yaml file and edit the deployment simply using edit in our case this is version3 shown below: This will take u to a vim edit page: 
+# Lastly:
+we can edit a deployment. we make the changes on the yaml file and edit the deployment simply using edit in our case this is version3 shown below: This will take u to a vim edit page: 
 
 
 $ kubectl edit deployment nginx --record
@@ -112,7 +117,7 @@ this takes time.
 
 you can "pause" deployment rollout, "resume" deployment rollout
  
-but to see the current satatus:
+but to see the current status:
 
 use $ kubectl rollout status deployment/nginx
 
@@ -131,6 +136,31 @@ REVISION  CHANGE-CAUSE
 2         kubectl set image deployment nginx nginx=nginx:1.12.3 --record=true
 
 3         kubectl edit deployment nginx --record=true
+
+
+you can also use describe deployment as used above to see each of the steps taking so far:
+
+# ROLLING Back
+
+if a rollout gets stuck, you can troubleshoot by first seeing details in history of a revision using the following
+
+$  kubectl rollout history deployment/nginx --revision=1
+
+This is where the record comes in handy. you can even rollback to the first deployment should in case the rollout gets stuck and rollout again making edition as mentioned above.
+
+you can scale deployment by simply using: 
+
+
+$ kubectl scale deployment nginx-deployment --replicas=12
+
+this scales the deployment. one can even deploy auto scaling as you would in EC2 using the following
+
+$ kubectl autoscale deployment nginx-deployment --min=3 --max=15
+
+This sets the current deployment of pods to be a minimum of 3 and a maximum of 15.
+
+
+
 
 
 
